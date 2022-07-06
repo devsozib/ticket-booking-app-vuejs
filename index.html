@@ -17,6 +17,50 @@
         Ticket Booking App
     </div>
     <div class="ticket-app">
+      <div class="confirmed-dialog" v-if="confirmed">
+        <h3>Ticket confirmed!</h3>
+        <hr>
+        <br>
+        <table class="selected-seats">
+          <tr>
+            <th>Passenger Name</th>
+          <td>{{name}}</td>
+          <tr>
+            <th>Passenger Contact</th>
+          <td>{{mobile}}</td>
+          
+          </tr>
+          <tr>
+            <th>Seats:</th>
+            <td>
+              <div v-for="(seat, i) in selectedSeats" :key="seat.name">
+                <div>
+                  {{seat.name}}
+                </div>
+      
+              </div>
+            </td>
+      
+            
+          </tr>
+          <tr>
+            <th>Total Cost</th>
+            <td>Tk. {{totalCost}}</td>
+          </tr>
+      
+        </table>
+      
+        <br>
+      
+        <button
+          class="confirm-button"
+          @click="resetData"
+        >
+          Book Again
+        </button>
+      </div>
+      
+      
       <div class="ticket-app__top">
         <div class="seat-states">
           <div class="seat-state" v-for="(value, key) in seatStates">
@@ -98,7 +142,7 @@
             <button
               class="confirm-button"
               @click="confirm"
-            >
+              >
               Confirm
             </button>
           </div>

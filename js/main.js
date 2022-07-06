@@ -202,7 +202,7 @@ let app = Vue.createApp({
             return;
           }
 
-          if(this.selectedSeats.length > 2){
+          if(clickedSeat.type=="available" && this.selectedSeats.length > 2){
             alert("You cant not select more than 3 seats");
             return;
           }
@@ -218,6 +218,19 @@ let app = Vue.createApp({
       
         this.confirmed = true;
       },
+
+      resetData() {
+        this.confirmed = false;
+        this.name = "";
+        this.mobile = "";
+        this.appliedCoupon = null;
+      
+        this.seats.forEach((seat) => {
+          if (seat.type === "selected") {
+            seat.type = "sold";
+          }
+        });
+      }
     }
 });
 
